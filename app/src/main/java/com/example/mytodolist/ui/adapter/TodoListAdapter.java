@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cj.greendao.entity.TodoBean;
 import com.example.mytodolist.R;
 
 import java.util.List;
@@ -18,9 +19,9 @@ import java.util.List;
  */
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyViewHolder> {
 
-    private List<String> list;
+    private List<TodoBean> list;
 
-    public void setList(List<String> list) {
+    public void setList(List<TodoBean> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -34,7 +35,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.text.setText("待办");
+        TodoBean todoBean = list.get(position);
+        holder.text.setText(todoBean.getContent());
 
     }
 

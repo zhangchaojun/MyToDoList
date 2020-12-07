@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cj.baselibrary.base.BaseFragment;
+import com.cj.greendao.entity.TodoBean;
+import com.cj.greendao.model.TodoListModel;
 import com.example.mytodolist.R;
 import com.example.mytodolist.ui.adapter.TodoListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +38,7 @@ public class TodoListFragment extends BaseFragment {
     protected void initView(View view) {
         mRvTodo = view.findViewById(R.id.rv_todo);
         initRecyclerView();
+        initDb();
         refreshData();
     }
 
@@ -46,12 +48,15 @@ public class TodoListFragment extends BaseFragment {
         mRvTodo.setAdapter(todoListAdapter);
     }
 
-    private void refreshData(){
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            list.add("");
-        }
-        todoListAdapter.setList(list);
+    private void refreshData() {
+        TodoListModel model = new TodoListModel();
+        List<TodoBean> todoBeans = model.queryAll();
+        todoListAdapter.setList(todoBeans);
+    }
+
+    private void initDb() {
+        TodoListModel model = new TodoListModel();
+        model.insertOrReplace(new TodoBean("1", "nihao"));
     }
 
 
