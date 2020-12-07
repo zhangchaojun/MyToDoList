@@ -56,7 +56,7 @@ public class TodoListFragment extends BaseFragment {
 
     private void initDb() {
         TodoListModel model = new TodoListModel();
-        model.insertOrReplace(new TodoBean("1", "nihao"));
+        model.insertOrReplace(new TodoBean("2", "nihao",2));
     }
 
 

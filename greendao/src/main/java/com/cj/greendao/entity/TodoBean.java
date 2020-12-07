@@ -13,12 +13,23 @@ public class TodoBean {
     @Id
     private String pubTime;
 
+    //内容
     private String content;
+    
+    /**
+     * 紧急程度
+     * 1 不重要
+     * 2 一般
+     * 3 重要
+     * 4 紧急
+     */
+    private int level;
 
-    @Generated(hash = 2008293618)
-    public TodoBean(String pubTime, String content) {
+    @Generated(hash = 42866239)
+    public TodoBean(String pubTime, String content, int level) {
         this.pubTime = pubTime;
         this.content = content;
+        this.level = level;
     }
 
     @Generated(hash = 1563990781)
@@ -39,5 +50,13 @@ public class TodoBean {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getLevel() {
+        return this.level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
