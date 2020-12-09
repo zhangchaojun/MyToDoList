@@ -1,8 +1,11 @@
 package com.cj.greendao.entity;
 
+import com.cj.base.Constant;
+import com.cj.base.utils.TimeUtil;
+
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 /**
  * Created by cj on 2020/12/7.
@@ -11,11 +14,14 @@ import org.greenrobot.greendao.annotation.Generated;
 public class TodoBean {
 
     @Id
-    private String pubTime;
+    private long pubTimeMillis;//发布时间戳
+    
+    private String pubTimeFormat;//发布时间字符串2020-10-20 12:20:00
+
 
     //内容
     private String content;
-    
+
     /**
      * 紧急程度
      * 1 不重要
@@ -25,9 +31,11 @@ public class TodoBean {
      */
     private int level;
 
-    @Generated(hash = 42866239)
-    public TodoBean(String pubTime, String content, int level) {
-        this.pubTime = pubTime;
+    @Generated(hash = 1074381487)
+    public TodoBean(long pubTimeMillis, String pubTimeFormat, String content,
+            int level) {
+        this.pubTimeMillis = pubTimeMillis;
+        this.pubTimeFormat = pubTimeFormat;
         this.content = content;
         this.level = level;
     }
@@ -36,12 +44,20 @@ public class TodoBean {
     public TodoBean() {
     }
 
-    public String getPubTime() {
-        return this.pubTime;
+    public long getPubTimeMillis() {
+        return this.pubTimeMillis;
     }
 
-    public void setPubTime(String pubTime) {
-        this.pubTime = pubTime;
+    public void setPubTimeMillis(long pubTimeMillis) {
+        this.pubTimeMillis = pubTimeMillis;
+    }
+
+    public String getPubTimeFormat() {
+        return this.pubTimeFormat;
+    }
+
+    public void setPubTimeFormat(String pubTimeFormat) {
+        this.pubTimeFormat = pubTimeFormat;
     }
 
     public String getContent() {
@@ -59,4 +75,6 @@ public class TodoBean {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    
 }

@@ -1,9 +1,12 @@
 package com.example.mytodolist.ui.adapter;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,11 @@ import java.util.List;
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyViewHolder> {
 
     private List<TodoBean> list;
+    private Context context;
+
+    public TodoListAdapter(Context context) {
+        this.context = context;
+    }
 
     public void setList(List<TodoBean> list) {
         this.list = list;
@@ -36,8 +44,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TodoBean todoBean = list.get(position);
-        holder.text.setText(todoBean.getContent());
-
+        holder.tv_todo.setText(todoBean.getContent());
+        holder.iv_color.setBackground(context.getResources().getDrawable(R.drawable.shape_circle_level1));
     }
 
     @Override
@@ -47,11 +55,16 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView text;
+        TextView tv_todo;
+        ImageView iv_color;
+        CheckBox checkbox;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.tv_todo);
+            tv_todo = itemView.findViewById(R.id.tv_todo);
+            iv_color = itemView.findViewById(R.id.iv_color);
+            checkbox = itemView.findViewById(R.id.checkbox);
+
         }
     }
 }
