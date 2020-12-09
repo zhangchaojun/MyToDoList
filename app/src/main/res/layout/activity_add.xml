@@ -7,27 +7,55 @@
     android:background="@color/white"
     tools:context=".ui.activity.AddActivity">
 
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/tv_back"
+        android:onClick="onClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+      />
+
+    <Button
+        android:id="@+id/bt_publish"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/shape_publish_bg_selected"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
     <EditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
         android:background="@color/white"
+        android:focusable="true"
         android:hint="请输入待办内容"
+        android:textSize="16sp"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/bt_publish" />
 
-    <Button
-        android:id="@+id/bt_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
-        android:text="提交"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

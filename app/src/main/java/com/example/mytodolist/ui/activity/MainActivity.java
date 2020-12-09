@@ -2,9 +2,12 @@ package com.example.mytodolist.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +25,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView mRvTodo;
     private ImageView mIvAdd;
     private TodoListAdapter todoListAdapter;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+        }
+    };
+    private List<TodoBean> todoBeans;
+    private TodoListModel model;
 
 
     @Override
@@ -46,13 +58,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initRecyclerView() {
         todoListAdapter = new TodoListAdapter(this);
+        todoListAdapter.setOnItemClickListener(new TodoListAdapter.OnItemClickListener() {
+            @Override
+            public void itemClicked(int positon) {
+                TodoBean todoBean = todoBeans.get(positon);
+                todoBean.setChecked(!todoBean.isChecked());
+                model.update(todoBean);
+
+                todoListAdapter.notifyDataSetChanged();
+            }
+        });
         mRvTodo.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRvTodo.setAdapter(todoListAdapter);
     }
 
     private void refreshData() {
-        TodoListModel model = new TodoListModel();
-        List<TodoBean> todoBeans = model.queryAll();
+        model = new TodoListModel();
+        todoBeans = model.queryAll();
         todoListAdapter.setList(todoBeans);
     }
 
@@ -74,6 +96,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
 
         refreshData();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+        handler = null;
     }
 }

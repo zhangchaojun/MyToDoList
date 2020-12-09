@@ -31,13 +31,19 @@ public class TodoBean {
      */
     private int level;
 
-    @Generated(hash = 1074381487)
+    /**
+     * 是否已勾选
+     */
+    private boolean isChecked;
+
+    @Generated(hash = 879750602)
     public TodoBean(long pubTimeMillis, String pubTimeFormat, String content,
-            int level) {
+            int level, boolean isChecked) {
         this.pubTimeMillis = pubTimeMillis;
         this.pubTimeFormat = pubTimeFormat;
         this.content = content;
         this.level = level;
+        this.isChecked = isChecked;
     }
 
     @Generated(hash = 1563990781)
@@ -45,7 +51,7 @@ public class TodoBean {
     }
 
     public long getPubTimeMillis() {
-        return this.pubTimeMillis;
+        return pubTimeMillis;
     }
 
     public void setPubTimeMillis(long pubTimeMillis) {
@@ -53,7 +59,7 @@ public class TodoBean {
     }
 
     public String getPubTimeFormat() {
-        return this.pubTimeFormat;
+        return pubTimeFormat;
     }
 
     public void setPubTimeFormat(String pubTimeFormat) {
@@ -61,7 +67,7 @@ public class TodoBean {
     }
 
     public String getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(String content) {
@@ -69,12 +75,26 @@ public class TodoBean {
     }
 
     public int getLevel() {
-        return this.level;
+        return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
     }
 
-    
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public boolean getIsChecked() {
+        return this.isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 }
