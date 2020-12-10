@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,9 @@ import com.cj.greendao.entity.TodoBean;
 import com.cj.greendao.model.TodoListModel;
 import com.example.mytodolist.R;
 import com.example.mytodolist.ui.adapter.TodoListAdapter;
+import com.google.android.material.navigation.NavigationView;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
     private List<TodoBean> todoBeans;
     private TodoListModel model;
+    private DrawerLayout drawer_layout;
+    private NavigationView navigationView;
 
 
     @Override
@@ -91,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mRvTodo = findViewById(R.id.rv_todo);
         mIvAdd = findViewById(R.id.iv_add);
         mIvAdd.setOnClickListener(this);
+
+        drawer_layout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigationView);
+        navigationView.setItemIconTintList(null);
     }
 
     private void initRecyclerView() {
@@ -131,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void refreshData() {
         model = new TodoListModel();
-        todoBeans = model.queryAll();
+        todoBeans = model.queryAllDesc();
+
         Iterator<TodoBean> iterator = todoBeans.iterator();
         while (iterator.hasNext()) {
             TodoBean next = iterator.next();
